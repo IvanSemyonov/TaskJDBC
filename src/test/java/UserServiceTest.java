@@ -44,8 +44,6 @@ public class UserServiceTest {
             List<User> userList = userService.getAllUsers();
             User user = userList.get(0);
 
-//            User user = userService.getAllUsers().get(0);
-
             if (!testName.equals(user.getName())
                     || !testLastName.equals(user.getLastName())
                     || testAge != user.getAge()
@@ -91,6 +89,8 @@ public class UserServiceTest {
         try {
             userService.dropUsersTable();
             userService.createUsersTable();
+            userService.saveUser(testName, testLastName, testAge);
+            userService.saveUser(testName, testLastName, testAge);
             userService.saveUser(testName, testLastName, testAge);
             userService.cleanUsersTable();
 
