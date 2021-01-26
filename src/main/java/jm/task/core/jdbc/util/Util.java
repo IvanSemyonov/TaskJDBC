@@ -30,7 +30,7 @@ public class Util {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
-    public static SessionFactory getSessionFactory() {
+    public static void buildSessionFactory() {
         Configuration configuration = new Configuration();
         Properties settings = new Properties();
         settings.put(Environment.DRIVER, DB_DRIVER);
@@ -47,6 +47,9 @@ public class Util {
                 .applySettings(configuration.getProperties())
                 .build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+    }
+
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 }

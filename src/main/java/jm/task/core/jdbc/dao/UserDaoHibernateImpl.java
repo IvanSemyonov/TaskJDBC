@@ -31,6 +31,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 " PRIMARY KEY ( id ))";
 
         try {
+            Util.buildSessionFactory();
             session = Util.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
@@ -44,12 +45,14 @@ public class UserDaoHibernateImpl implements UserDao {
             e.printStackTrace();
         } finally {
             session.close();
+            Util.getSessionFactory().close();
         }
     }
 
     @Override
     public void dropUsersTable() {
         try {
+            Util.buildSessionFactory();
             session = Util.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
@@ -63,12 +66,14 @@ public class UserDaoHibernateImpl implements UserDao {
             e.printStackTrace();
         } finally {
             session.close();
+            Util.getSessionFactory().close();
         }
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
         try {
+            Util.buildSessionFactory();
             session = Util.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
@@ -85,12 +90,14 @@ public class UserDaoHibernateImpl implements UserDao {
             e.printStackTrace();
         } finally {
             session.close();
+            Util.getSessionFactory().close();
         }
     }
 
     @Override
     public void removeUserById(long id) {
         try {
+            Util.buildSessionFactory();
             session = Util.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.delete(session.load(User.class, id));
@@ -102,6 +109,7 @@ public class UserDaoHibernateImpl implements UserDao {
             e.printStackTrace();
         } finally {
             session.close();
+            Util.getSessionFactory().close();
         }
     }
 
@@ -109,6 +117,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
         try {
+            Util.buildSessionFactory();
             session = Util.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
@@ -122,6 +131,7 @@ public class UserDaoHibernateImpl implements UserDao {
             e.printStackTrace();
         } finally {
             session.close();
+            Util.getSessionFactory().close();
         }
 
         return userList;
@@ -130,6 +140,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void cleanUsersTable() {
         try {
+            Util.buildSessionFactory();
             session = Util.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
@@ -143,6 +154,7 @@ public class UserDaoHibernateImpl implements UserDao {
             e.printStackTrace();
         } finally {
             session.close();
+            Util.getSessionFactory().close();
         }
     }
 }
